@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Nuova ricetta</h2>
+
+<mat-dialog-content class="content">
+  <mat-form-field class="title-row">
+    <mat-label>Titolo</mat-label>
+    <input matInput [formControl]="titleControl">
+  </mat-form-field>
+  <div class="ingredients-container">
+    <div class="ingredient-title-row">
+      <div>INGREDIENTE</div>
+      <div>QUANTITA'</div>
+    </div>
+    <div *ngFor="let ingredient of ingredients" class="ingredient-row">
+      <mat-card appearance="outlined">
+        <mat-card-content class="card">
+          <div>{{ingredient.name}}</div>
+          <div>{{ingredient.quantity}}</div>
+          <div>
+            <button mat-mini-fab (click)="deleteIngredient(ingredient)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="ingredient-title-row">
+      <mat-form-field class="example-full-width">
+        <mat-label>Ingrediente</mat-label>
+        <input matInput [formControl]="ingredientControl">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Quantità</mat-label>
+        <input matInput [formControl]="quantityControl">
+      </mat-form-field>
+      <button mat-mini-fab (click)="addIngredient()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-form-field class="procedure-row">
+    <mat-label>Istruzioni</mat-label>
+    <textarea matInput [formControl]="procedureControl"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Chiudi</button>
+  <button mat-button (click)="addRecipe()">Aggiungi ricetta</button>
+</mat-dialog-actions>

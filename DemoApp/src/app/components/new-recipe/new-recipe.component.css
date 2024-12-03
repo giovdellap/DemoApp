@@ -1,0 +1,33 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+}
+
+.ingredients-container {
+  width: 100%;
+}
+
+.ingredient-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 480px;
+  margin: 10px;
+}
+
+.ingredient-title-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%;
+}
