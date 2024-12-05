@@ -7,6 +7,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { BehaviorSubject } from 'rxjs';
 import { Ingredient, Recipe } from '../../model/recipe';
 import { RecipeService } from '../../services/recipe.service';
 
@@ -39,10 +40,19 @@ export class NewRecipeComponent {
   procedureControl: FormControl = new FormControl('')
 
   ingredients: Ingredient[] = []
+  ingredientsBS: BehaviorSubject<Ingredient[]> = new BehaviorSubject<Ingredient[]>(this.ingredients)
+
+  disabledAddButton: boolean = true
 
 
   constructor(private recipeService: RecipeService) {
     this.dialogRef.updateSize('500px')
+  }
+
+  ngOnInit() {
+    this.titleControl.valueChanges.subscribe(x => this.checkForCorrectFields())
+    this.procedureControl.valueChanges.subscribe(x => this.checkForCorrectFields())
+    this.ingredientsBS.asObservable().subscribe(x => this.checkForCorrectFields())
   }
 
   addIngredient() {
@@ -54,11 +64,14 @@ export class NewRecipeComponent {
       this.ingredients.push(ingredient)
       this.ingredientControl.setValue("")
       this.quantityControl.setValue("")
+      this.ingredientsBS.next(this.ingredients)
     }
   }
 
   deleteIngredient(ingredient: Ingredient) {
     this.ingredients = this.ingredients.filter(ingr => ingr !== ingredient)
+    this.ingredientsBS.next(this.ingredients)
+
   }
 
   addRecipe() {
@@ -71,6 +84,14 @@ export class NewRecipeComponent {
     }
     this.recipeService.addRecipe(recipe)
     this.dialogRef.close()
+  }
+
+  checkForCorrectFields() {
+    if(
+      this.titleControl.value !== "" &&
+      this.procedureControl.value !== "" &&
+      this.ingredients.length > 0
+    ) this.disabledAddButton = false
   }
 
   closeDialog() {

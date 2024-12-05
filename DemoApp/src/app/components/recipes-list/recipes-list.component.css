@@ -1,0 +1,34 @@
+.recipes-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #ede1e1;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-content-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.recipe-name {
+    font-weight: bold;
+
+}

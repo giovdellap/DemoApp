@@ -6,10 +6,6 @@
     <input matInput [formControl]="titleControl">
   </mat-form-field>
   <div class="ingredients-container">
-    <div class="ingredient-title-row">
-      <div>INGREDIENTE</div>
-      <div>QUANTITA'</div>
-    </div>
     <div *ngFor="let ingredient of ingredients" class="ingredient-row">
       <mat-card appearance="outlined">
         <mat-card-content class="card">
@@ -24,15 +20,15 @@
       </mat-card>
     </div>
     <div class="ingredient-title-row">
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ingredient-form-element">
         <mat-label>Ingrediente</mat-label>
         <input matInput [formControl]="ingredientControl">
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="ingredient-form-element">
         <mat-label>Quantità</mat-label>
         <input matInput [formControl]="quantityControl">
       </mat-form-field>
-      <button mat-mini-fab (click)="addIngredient()">
+      <button mat-mini-fab (click)="addIngredient()" class="ingredient-form-element">
         <mat-icon>add</mat-icon>
       </button>
     </div>
@@ -45,5 +41,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="closeDialog()">Chiudi</button>
-  <button mat-button (click)="addRecipe()">Aggiungi ricetta</button>
+  <button mat-button [disabled]="disabledAddButton" (click)="addRecipe()">Aggiungi ricetta</button>
 </mat-dialog-actions>

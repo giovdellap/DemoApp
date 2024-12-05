@@ -1,1 +1,15 @@
-<p>recipe-details works!</p>
+<div *ngIf="showDetailsObs | async">
+    <div class="recipe-container">
+        <div class="recipe-title">{{(currentRecipeObs | async)!.name}}</div>
+        <div class="recipe-date">{{(currentRecipeObs | async)!.date | customDateFormat}}</div>
+        <div class="ingredients-container">
+            <mat-card appearance="outlined" class="card" *ngFor="let ingredient of (currentRecipeObs | async)!.ingredients">
+                <mat-card-content class="card-content">
+                    <div>{{ingredient.name}}</div>
+                    <div>{{ingredient.quantity}}</div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="recipe-procedure">{{(currentRecipeObs | async)!.procedure}}</div>
+    </div>
+</div>

@@ -7,7 +7,7 @@
 }
 
 .ingredients-container {
-  width: 100%;
+  width: 80%;
 }
 
 .ingredient-row {
@@ -21,7 +21,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 480px;
+  width: 400px;
+  height: 30px;
   margin: 10px;
 }
 
@@ -29,5 +30,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 70%;
+  width: 400px;
+  margin-top: 10px;
+}
+
+.ingredient-form-element {
+  margin: 0px 5px 0px 5px;
+}
+
+.procedure-row {
+  width: 100%;
 }
